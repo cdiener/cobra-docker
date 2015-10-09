@@ -12,7 +12,7 @@ RUN apt-get update -y
 ## Debian package installs
 RUN apt-get install -yq --no-install-recommends build-essential git \
     libbz2-dev libgmp-dev libzmq-dev openssl python3-dev python3-matplotlib \
-    python3-numpy python3-pandas python3-seaborn python3-scipy python3-tk python3-pil python3-pip \
+    python3-numpy python3-scipy python3-tk python3-pil python3-pip \
     python3-lxml fonts-liberation coinor-cbc coinor-clp glpk-utils libglpk-dev \
     coinor-libcbc-dev coinor-libclp-dev libatlas-dev libatlas-base-dev libxml2-dev
 
@@ -23,11 +23,11 @@ RUN apt-get install -yq --no-install-recommends build-essential git \
 # where you run docker build and choose the folder solvers/ibm in the current
 # directory as install destination
 COPY ./solvers ./solvers
-RUN [[ -d ".solvers/ibm" ]] && pip3 install ./solvers/ibm/cplex/python/3.4/x86-64_linux
+RUN if [ -d ./solvers/ibm ]; then pip3 install ./solvers/ibm/cplex/python/3.4/x86-64_linux; fi
 RUN cd /usr/bin && ln -s .solvers/opt/ibm/cplex/bin/x86-64_linux/cplex
 
 ## Install Cobra and Pip packages
-RUN pip3 install jupyter python-libsbml pycddlib statsmodels
+RUN pip3 install jupyter python-libsbml pycddlib statsmodels pandas seaborn
 RUN git clone https://github.com/opencobra/cobrapy /tmp/cobra_git
 RUN pip3 install /tmp/cobra_git
 RUN rm -rf /tmp/cobra_git
