@@ -12,7 +12,7 @@ RUN apt-get update -y
 ## Debian package installs
 RUN apt-get install -yq --no-install-recommends build-essential git \
     libbz2-dev libgmp-dev libzmq-dev openssl python3-dev python3-matplotlib \
-    python3-numpy python3-scipy python3-tk python3-pil python3-pip \
+    python3-numpy python3-scipy python3-tk python3-pil python3-pip cython3 \
     python3-lxml fonts-liberation coinor-cbc coinor-clp glpk-utils libglpk-dev \
     coinor-libcbc-dev coinor-libclp-dev libatlas-dev libatlas-base-dev libxml2-dev
 
