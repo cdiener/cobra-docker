@@ -20,7 +20,8 @@ mkdir solvers models
 docker build -t cobra .
 ```
 
-## Additional models
+### Additional models
+
 The models folder in the working directory will be copied automatically into
 the working directory of the jupyter server. To add the Recon 2 model for instance
 the following has to be done before running docker build:
