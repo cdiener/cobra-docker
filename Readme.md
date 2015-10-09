@@ -42,7 +42,7 @@ container. The Dockerfile will take care of the rest.
 
 ## Planned changes
 
-[ ] unprivileged user
-[ ] more solvers
-[ ] pdf export?
+[] unprivileged user
+[] more solvers
+[] pdf export?
 
