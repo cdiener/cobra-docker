@@ -1,6 +1,7 @@
 ############################################################
 # Dockerfile to build a jupyter app running cobrapy
 # with most of the optional dependencies installed
+#
 ############################################################
 
 FROM debian
