@@ -25,7 +25,8 @@ RUN apt-get install -yq --no-install-recommends build-essential git \
 # directory as install destination
 COPY ./solvers ./solvers
 RUN if [ -d ./solvers/ibm ]; then pip3 install ./solvers/ibm/cplex/python/3.4/x86-64_linux; fi
-RUN cd /usr/bin && ln -s .solvers/opt/ibm/cplex/bin/x86-64_linux/cplex
+RUN cd /usr/bin && cp .solvers/opt/ibm/cplex/bin/x86-64_linux/cplex .
+RUN rm -rf ./solvers
 
 ## Install Cobra and Pip packages
 RUN pip3 install jupyter python-libsbml pycddlib statsmodels pandas seaborn
@@ -35,7 +36,7 @@ RUN rm -rf /tmp/cobra_git
 
 ## Add models
 WORKDIR root
-COPY ./models ./models
+COPY ./models /models
 
 ## Clean up
 RUN apt-get -y autoclean
