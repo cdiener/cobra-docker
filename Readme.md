@@ -7,7 +7,7 @@ the following "add-ons":
 
 * optional https and passwords protection
 * matplotlib and seaborn for plotting
-* installation of commercial solvers (currently only cplex)
+* installation of commercial solvers (only cplex)
 * additional command line lp solvers (clp, cbc and glpk)
 * copy additional sbml models from the host
 
@@ -40,9 +40,16 @@ You can do that by running the Cplex Installer and when prompted for the install
 directory choosing "solvers/ibm" in the directory from where you will build your docker
 container. The Dockerfile will take care of the rest.  
 
+### Gurobi
+
+Extract the tar.gz file you downloaded from gurobi into the folder "solvers/gurobi"
+of your build directory (so "solvers/gurobi/linux64") exists. Put your Gurobi
+license file ("gurobi.lic") into the gurobi folder as well. The Dockerfile will
+take care of the rest. 
+
 ## Planned changes
 
 - [ ] unprivileged user
-- [ ] more solvers
+- [x] more solvers
 - [ ] pdf export?
 
