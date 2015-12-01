@@ -11,8 +11,8 @@ MAINTAINER Christian Diener "<mail@cdiener.com>"
 RUN apt-get update -y
 
 ## Debian package installs
-RUN apt-get install -yq --no-install-recommends build-essential git \
-    libbz2-dev libgmp-dev libzmq-dev openssl python3-dev \
+RUN apt-get install -yq --no-install-recommends build-essential git fontconfig\
+    libbz2-dev libgmp-dev libzmq-dev openssl python3-dev python3-matplotlib\
     python3-numpy python3-scipy python3-tk python3-pil python3-pip cython3 \
     python3-lxml fonts-liberation coinor-cbc coinor-clp glpk-utils libglpk-dev \
     coinor-libcbc-dev coinor-libclp-dev libatlas-dev libatlas-base-dev libxml2-dev
@@ -37,17 +37,16 @@ RUN cp ./solvers/ibm/cplex/bin/x86-64_linux/cplex /usr/bin/
 RUN rm -rf ./solvers
 
 ## Install Cobra and Pip packages
-RUN pip3 install jupyter python-libsbml matplotlib pycddlib statsmodels pandas seaborn
+RUN pip3 install jupyter python-libsbml palettable pycddlib statsmodels pandas seaborn
 RUN git clone https://github.com/opencobra/cobrapy /tmp/cobra_git
 RUN pip3 install /tmp/cobra_git
-RUN rm -rf /tmp/cobra_git
 
 ## Add models
 WORKDIR root
 COPY ./models /models
 
 ## Clean up
-RUN apt-get clean
+RUN apt-get -yq purge build-essential && apt-get -yq autoremove && apt-get -yq clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## Configure Notebook server
