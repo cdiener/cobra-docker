@@ -40,16 +40,23 @@ You can do that by running the Cplex Installer and when prompted for the install
 directory choosing "solvers/ibm" in the directory from where you will build your docker
 container. The Dockerfile will take care of the rest.  
 
-### Gurobi
+### Environment variables
 
-Extract the tar.gz file you downloaded from gurobi into the folder "solvers/gurobi"
-of your build directory (so "solvers/gurobi/linux64") exists. Put your Gurobi
-license file ("gurobi.lic") into the gurobi folder as well. The Dockerfile will
-take care of the rest. 
+This container supports some of the environment variables of the [minimal Jupyter image](https://github.com/jupyter/docker-stacks/tree/master/minimal-notebook). The most important ones are:
+
+- PASSWORD - to set a password for the notebook
+- USE_HTTPS - to use https (will require you to access the notebook via https://localhost:PORT
+
+So you can run a notebook server with HTTPS and password "notebook" at https://localhost:8888
+with
+
+```bash
+docker run -p 8888:8888 -e PASSWORD="notebook" USE_HTTPS=yes cobra
+```
 
 ## Planned changes
 
 - [ ] unprivileged user
-- [x] more solvers
+- [ ] more solvers
 - [ ] pdf export?
 
