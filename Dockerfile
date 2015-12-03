@@ -16,6 +16,7 @@ RUN apt-get install -yq --no-install-recommends build-essential git fontconfig\
     python3-numpy python3-scipy python3-tk python3-pil python3-pip cython3 \
     python3-lxml fonts-liberation coinor-cbc coinor-clp glpk-utils libglpk-dev \
     coinor-libcbc-dev coinor-libclp-dev libatlas-dev libatlas-base-dev libxml2-dev
+RUN fc-cache -fv
 
 ## Solvers commercial
 # Cplex
@@ -23,9 +24,9 @@ RUN apt-get install -yq --no-install-recommends build-essential git fontconfig\
 # extract everything beforehand. For this run the cplex installer in the directory
 # where you run docker build and choose the folder solvers/ibm in the current
 # directory as install destination
-COPY ./solvers ./solvers
-RUN if [ -d ./solvers/ibm ]; then pip3 install ./solvers/ibm/cplex/python/3.4/x86-64_linux; fi
-RUN cp ./solvers/ibm/cplex/bin/x86-64_linux/cplex /usr/bin/
+COPY ./solvers /solvers
+RUN if [ -d /solvers/ibm ]; then pip3 install /solvers/ibm/cplex/python/3.4/x86-64_linux \
+    cp ./solvers/ibm/cplex/bin/x86-64_linux/cplex /usr/bin/; fi
 
 # Gurobi currently in active due to problems with obtaining the license
 # inside docker
@@ -34,7 +35,7 @@ RUN cp ./solvers/ibm/cplex/bin/x86-64_linux/cplex /usr/bin/
 # RUN mkdir /opt/gurobi
 # RUN if [ -d ./solvers/gurobi ]; then cp ./solvers/gurobi/gurobi.lic /opt/gurobi/; fi
 # RUN if [ -d ./solvers/gurobi ]; then pip3 install ./solvers/gurobi/linux64; fi
-RUN rm -rf ./solvers
+RUN rm -rf /solvers
 
 ## Install Cobra and Pip packages
 RUN pip3 install jupyter python-libsbml palettable pycddlib statsmodels pandas seaborn
