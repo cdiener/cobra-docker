@@ -7,13 +7,24 @@ the following "add-ons":
 
 * optional https and passwords protection
 * matplotlib and seaborn for plotting
-* installation of commercial solvers (only cplex)
-* additional command line lp solvers (clp, cbc and glpk)
+* installation of commercial solvers (only cplex, please contact me or send a pull
+  request if you want to help out with gurobi)
 * copy additional sbml models from the host
 
 ## Installation
 
-If you do not want to install additional models and solvers, the image can be build with
+The image is built automatically by the docker automated build system. To get 
+the latest version just pull it in docker. Obviously, this will *NOT* include
+commercial solvers.
+
+```bash
+docker pull cdiener/cobra
+```
+
+### Building locally
+
+A local version including commercial solvers and customized models can be 
+built with
 
 ```{bash}
 mkdir solvers models
