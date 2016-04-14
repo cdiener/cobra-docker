@@ -6,14 +6,17 @@ and a jupyter notebook server apart from those two it also provides
 the following "add-ons":
 
 * optional https and passwords protection
+* reconstruction of metabolic models using [CORDA](https://github.com/cdiener/corda)
+* unpriviliged user
+* Latex to export notebooks as PDF
 * matplotlib and seaborn for plotting
 * installation of commercial solvers (only cplex, please contact me or send a pull
-  request if you want to help out with gurobi)
+  request if you want to help out with gurobi and mosek)
 * copy additional sbml models from the host
 
 ## Installation
 
-The image is built automatically by the docker automated build system. To get 
+The image is built automatically by the docker automated build system. To get
 the latest version just pull it in docker. Obviously, this will *NOT* include
 commercial solvers.
 
@@ -23,7 +26,7 @@ docker pull cdiener/cobra
 
 ### Building locally
 
-A local version including commercial solvers and customized models can be 
+A local version including commercial solvers and customized models can be
 built with
 
 ```{bash}
@@ -67,7 +70,6 @@ docker run -p 8888:8888 -e PASSWORD="notebook" USE_HTTPS=yes cobra
 
 ## Planned changes
 
-- [ ] unprivileged user
+- [X] unprivileged user
 - [ ] more solvers
-- [ ] pdf export?
-
+- [X] pdf export?
