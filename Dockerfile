@@ -9,8 +9,7 @@ MAINTAINER Christian Diener "<mail@cdiener.com>"
 
 USER jovyan
 
-RUN conda config --add channels r && conda config --add channels bioconda
-RUN conda install -y \
+RUN conda install --quiet --yes -c bioconda\
     python=3.4 \
     numpy \
     matplotlib \
@@ -18,9 +17,11 @@ RUN conda install -y \
     statsmodels \
     seaborn \
     cobra \
-    && conda clean -yt
+    && pip install https://github.com/cdiener/corda/archive/master.zip \
+    && conda clean -tipsy
 
 USER root
+
 ## Solvers commercial
 # Cplex
 # The installer is interactive and can not run in docker build so we have to
