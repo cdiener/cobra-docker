@@ -9,15 +9,15 @@ MAINTAINER Christian Diener "<mail@cdiener.com>"
 
 USER jovyan
 
-RUN conda install --quiet --yes -c bioconda\
+RUN conda install --quiet --yes \
     python=3.4 \
     numpy \
     matplotlib \
     pandas \
     statsmodels \
     seaborn \
-    cobra \
-    && pip install https://github.com/cdiener/corda/archive/master.zip \
+    scipy \
+    && pip install python-libsbml cobra corda  \
     && conda clean -tipsy
 
 USER root
