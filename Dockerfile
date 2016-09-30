@@ -21,7 +21,7 @@ RUN conda install --quiet --yes \
     && pip install --pre python-libsbml cobra corda  \
     && conda clean -tipsy
 
-COPY recon2.ipynb /home/jovyan
+COPY recon2.ipynb /home/jovyan/work
 
 USER root
 
