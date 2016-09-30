@@ -17,8 +17,11 @@ RUN conda install --quiet --yes \
     statsmodels \
     seaborn \
     scipy \
-    && pip install python-libsbml cobra corda  \
+    lxml \
+    && pip install --pre python-libsbml cobra corda  \
     && conda clean -tipsy
+
+COPY recon2.ipynb /home/jovyan
 
 USER root
 
