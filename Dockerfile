@@ -10,7 +10,7 @@ MAINTAINER Christian Diener "<mail@cdiener.com>"
 USER jovyan
 
 RUN conda install --quiet --yes \
-    python=3.4 \
+    python=3.5 \
     numpy \
     matplotlib \
     pandas \
