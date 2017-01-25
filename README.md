@@ -12,7 +12,6 @@ the following "add-ons":
 * matplotlib and seaborn for plotting
 * installation of commercial solvers (only cplex, please contact me or send a pull
   request if you want to help out with gurobi and mosek)
-* copy additional sbml models from the host
 
 ## Installation
 
@@ -30,18 +29,8 @@ A local version including commercial solvers and customized models can be
 built with
 
 ```{bash}
-mkdir solvers models
+mkdir solvers
 docker build -t cobra .
-```
-
-### Additional models
-
-The models folder in the working directory will be copied automatically into
-the working directory of the jupyter server. To add the Recon 2 model for instance
-the following has to be done before running docker build:
-
-```{bash}
-wget https://www.ebi.ac.uk/biomodels-main/download?mid=MODEL1109130000 -O models/recon2.xml
 ```
 
 ### Commercial solvers
@@ -49,23 +38,23 @@ wget https://www.ebi.ac.uk/biomodels-main/download?mid=MODEL1109130000 -O models
 ### Cplex
 
 In order to have cplex installed you will need the current cplex install (12.6+)
-and extract ists contents to the "solvers" directory into a subfolder "ibm".
+and extract its contents to the "solvers" directory into a subfolder "ibm".
 You can do that by running the Cplex Installer and when prompted for the installation
 directory choosing "solvers/ibm" in the directory from where you will build your docker
-container. The Dockerfile will take care of the rest.  
+container. The Dockerfile will take care of the rest.
 
 ### Environment variables
 
 This container supports some of the environment variables of the [minimal Jupyter image](https://github.com/jupyter/docker-stacks/tree/master/minimal-notebook). The most important ones are:
 
-- PASSWORD - to set a password for the notebook
-- USE_HTTPS - to use https (will require you to access the notebook via https://localhost:PORT
+- using the the start-notebook.sh script to directly write to the jupyter config
+- GEN_CERT - to use https (will require you to access the notebook via https://localhost:PORT)
 
 So you can run a notebook server with HTTPS and password "notebook" at https://localhost:8888
 with
 
 ```bash
-docker run -p 8888:8888 -e PASSWORD="notebook" USE_HTTPS=yes cobra
+docker run -p 8888:8888 -e GEN_CERT=yes cobra start-notebook.sh --NotebookApp.token='notebook'
 ```
 
 ## Planned changes
