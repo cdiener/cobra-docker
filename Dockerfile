@@ -18,8 +18,9 @@ RUN conda install --quiet --yes \
     statsmodels \
     seaborn \
     scipy \
+    tabulate \
     lxml \
-    && pip install --pre python-libsbml optlang cobra corda  \
+    && pip install --pre python-libsbml cobra corda optlang swiglpk \
     && conda clean -tipsy
 
 COPY recon2.ipynb /home/jovyan/work

@@ -20,7 +20,7 @@ the latest version just pull it in docker. Obviously, this will *NOT* include
 commercial solvers.
 
 ```bash
-docker pull cdiener/cobra
+docker pull cdiener/cobra-docker
 ```
 
 ### Building locally
